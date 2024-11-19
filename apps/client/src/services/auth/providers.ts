@@ -9,16 +9,10 @@ export const getAuthProviders = async () => {
 
   return response.data;
 };
-
 export const useAuthProviders = () => {
-  const {
-    error,
-    isPending: loading,
-    data: providers,
-  } = useQuery({
-    queryKey: [AUTH_PROVIDERS_KEY],
-    queryFn: getAuthProviders,
-  });
+  const providers = []; // or provide some default providers if needed
+  const loading = false;
+  const error = null;
 
   return { providers, loading, error };
 };

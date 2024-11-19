@@ -40,7 +40,7 @@ export const BasicsSection = () => {
         </div>
 
         <div className="space-y-1.5 sm:col-span-2">
-          <Label htmlFor="basics.headline">{t`Headline`}</Label>
+          <Label htmlFor="basics.headline">{t`Headlines`}</Label>
           <Input
             id="basics.headline"
             value={basics.headline}

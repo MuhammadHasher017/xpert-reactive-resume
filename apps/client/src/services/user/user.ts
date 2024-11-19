@@ -1,17 +1,26 @@
-import { UserDto } from "@reactive-resume/dto";
 import { useQuery } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
 import { useEffect } from "react";
 
-import { axios } from "@/client/libs/axios";
 import { useAuthStore } from "@/client/stores/auth";
 
 export const fetchUser = async () => {
-  const response = await axios.get<UserDto | undefined, AxiosResponse<UserDto | undefined>>(
-    "/user/me",
-  );
+  // const response = await axios.get<UserDto | undefined, AxiosResponse<UserDto | undefined>>(
+  //   "/user/me",
+  // );
 
-  return response.data;
+  return {
+    id: "cm2ooirzd0oxezg05hn79xzaw",
+    name: "Muhammad Hasher",
+    picture:
+      "https://lh3.googleusercontent.com/a/ACg8ocLY_aY90BiWheIoyTbjMk_z5FlvnEJ3pAQq_6-GD7vOsb_uoIk3=s96-c",
+    username: "muhammadhasher017",
+    email: "muhammadhasher017@gmail.com",
+    locale: "en-US",
+    emailVerified: true,
+    twoFactorEnabled: false,
+    createdAt: "2024-10-25T11:59:09.863Z",
+    updatedAt: "2024-10-25T11:59:09.863Z",
+  };
 };
 
 export const useUser = () => {

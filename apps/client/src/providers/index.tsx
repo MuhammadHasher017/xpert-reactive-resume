@@ -15,17 +15,17 @@ export const Providers = () => (
   <LocaleProvider>
     <HelmetProvider context={helmetContext}>
       <QueryClientProvider client={queryClient}>
-        <AuthRefreshProvider>
-          <ThemeProvider>
-            <TooltipProvider>
-              <DialogProvider>
-                <Outlet />
+        {/* <AuthRefreshProvider> */}
+        <ThemeProvider>
+          <TooltipProvider>
+            <DialogProvider>
+              <Outlet />
 
-                <Toaster />
-              </DialogProvider>
-            </TooltipProvider>
-          </ThemeProvider>
-        </AuthRefreshProvider>
+              <Toaster />
+            </DialogProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+        {/* </AuthRefreshProvider> */}
       </QueryClientProvider>
     </HelmetProvider>
   </LocaleProvider>
