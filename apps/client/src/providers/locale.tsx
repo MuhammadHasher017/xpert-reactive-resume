@@ -32,13 +32,11 @@ export const LocaleProvider = ({ children }: Props) => {
   return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 };
 
-export const changeLanguage = async (locale: string) => {
+export const changeLanguage = (locale: string) => {
   // Update locale in local storage
   window.localStorage.setItem("locale", locale);
 
   // Update locale in user profile, if authenticated
-  const state = useAuthStore.getState();
-  if (state.user) await updateUser({ locale }).catch(() => null);
 
   // Reload the page for language switch to take effect
   window.location.reload();

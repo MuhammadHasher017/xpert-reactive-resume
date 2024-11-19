@@ -2,7 +2,6 @@ import { t } from "@lingui/macro";
 import { ResumeDto } from "@reactive-resume/dto";
 import { useCallback, useEffect } from "react";
 import { LoaderFunction, redirect } from "react-router-dom";
-
 import { queryClient } from "@/client/libs/query-client";
 import { findResumeById } from "@/client/services/resume";
 import { useBuilderStore } from "@/client/stores/builder";
@@ -37,8 +36,6 @@ export const BuilderPage = () => {
   useEffect(updateResumeInFrame, [resume.data]);
 
   return (
-
-
     <iframe
       ref={setFrameRef}
       title={resume.id}

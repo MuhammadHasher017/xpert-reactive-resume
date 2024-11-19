@@ -6,10 +6,8 @@ import { Providers } from "../providers";
 
 export const routes = createRoutesFromElements(
   <Route element={<Providers />}>
-    <Route path="builder">
-      <Route element={<BuilderLayout />}>
-        <Route path=":id" loader={builderLoader} element={<BuilderPage />} />
-      </Route>
+    <Route element={<BuilderLayout />}>
+      <Route index={true} loader={builderLoader} element={<BuilderPage />} />
     </Route>
   </Route>,
 );
