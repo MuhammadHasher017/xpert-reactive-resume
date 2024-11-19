@@ -10,8 +10,6 @@ type Props = {
 export const UserAvatar = ({ size = 36, className }: Props) => {
   const { user } = useUser();
 
-  if (!user) return null;
-
   let picture: React.ReactNode;
 
   if (user.picture) {
