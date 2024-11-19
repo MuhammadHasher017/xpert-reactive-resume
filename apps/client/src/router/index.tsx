@@ -1,4 +1,4 @@
-import { createBrowserRouter, createRoutesFromElements, Navigate, Route } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 
 import { BuilderLayout } from "../pages/builder/layout";
 import { builderLoader, BuilderPage } from "../pages/builder/page";
@@ -9,8 +9,6 @@ export const routes = createRoutesFromElements(
     <Route path="builder">
       <Route element={<BuilderLayout />}>
         <Route path=":id" loader={builderLoader} element={<BuilderPage />} />
-
-        <Route index element={<Navigate replace to="/dashboard/resumes" />} />
       </Route>
     </Route>
   </Route>,

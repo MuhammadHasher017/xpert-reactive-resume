@@ -1,13 +1,13 @@
 import { t } from "@lingui/macro";
 import { ResumeDto } from "@reactive-resume/dto";
 import { useCallback, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { LoaderFunction, redirect } from "react-router-dom";
 
 import { queryClient } from "@/client/libs/query-client";
 import { findResumeById } from "@/client/services/resume";
 import { useBuilderStore } from "@/client/stores/builder";
 import { useResumeStore } from "@/client/stores/resume";
+import { ThemeSwitch } from "@/client/components/theme-switch";
 
 export const BuilderPage = () => {
   const frameRef = useBuilderStore((state) => state.frame.ref);
@@ -37,21 +37,15 @@ export const BuilderPage = () => {
   useEffect(updateResumeInFrame, [resume.data]);
 
   return (
-    <>
-      <Helmet>
-        <title>
-          {title} - {t`Reactive Resume`}
-        </title>
-      </Helmet>
 
-      <iframe
-        ref={setFrameRef}
-        title={resume.id}
-        src="/artboard/builder"
-        className="mt-16 w-screen"
-        style={{ height: `calc(100vh - 64px)` }}
-      />
-    </>
+
+    <iframe
+      ref={setFrameRef}
+      title={resume.id}
+      src="/artboard/builder"
+      className="mt-16 w-screen"
+      style={{ height: `calc(100vh - 64px)` }}
+    />
   );
 };
 

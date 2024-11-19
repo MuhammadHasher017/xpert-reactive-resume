@@ -1,21 +1,9 @@
 /* eslint-disable lingui/no-unlocalized-strings */
 
 import { t } from "@lingui/macro";
-import { Helmet } from "react-helmet-async";
 
 export const PrivacyPolicyPage = () => (
   <main className="relative isolate bg-background">
-    <Helmet prioritizeSeoTags>
-      <title>
-        {t`Privacy Policy`} - {t`Reactive Resume`}
-      </title>
-
-      <meta
-        name="description"
-        content="A free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume."
-      />
-    </Helmet>
-
     <section
       id="privacy-policy"
       className="container prose prose-zinc relative max-w-4xl py-32 dark:prose-invert"
