@@ -1,12 +1,9 @@
-import { t } from "@lingui/macro";
-import { ResumeDto } from "@reactive-resume/dto";
+import { unknown } from "@reactive-resume/dto";
 import { useCallback, useEffect } from "react";
 import { LoaderFunction, redirect } from "react-router-dom";
-import { queryClient } from "@/client/libs/query-client";
-import { findResumeById } from "@/client/services/resume";
+
 import { useBuilderStore } from "@/client/stores/builder";
 import { useResumeStore } from "@/client/stores/resume";
-import { ThemeSwitch } from "@/client/components/theme-switch";
 
 export const BuilderPage = () => {
   const frameRef = useBuilderStore((state) => state.frame.ref);
@@ -46,7 +43,7 @@ export const BuilderPage = () => {
   );
 };
 
-export const builderLoader: LoaderFunction<ResumeDto> = async ({ params }) => {
+export const builderLoader: LoaderFunction<unknown> = async ({ params }) => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const id = params.id!;
@@ -56,284 +53,481 @@ export const builderLoader: LoaderFunction<ResumeDto> = async ({ params }) => {
       title: "test123",
       slug: "test123",
       data: {
-        "basics": {
-          "name": "John Doe",
-          "headline": "Creative and Innovative Web Developer",
-          "email": "john.doe@gmail.com",
-          "phone": "(555) 123-4567",
-          "location": "Pleasantville, CA 94588",
-          "url": {
-            "label": "",
-            "href": "https://johndoe.me/"
+        basics: {
+          name: "Muhammad Hamza Iqtedar",
+          headline: "Passionate and results-driven Data Scientist and Junior AI Engineer",
+          email: "mailto:hamza900561@gmail.com",
+          phone: "03001882001",
+          location: "",
+          url: {
+            label: "",
+            href: "https://www.linkedin.com/in/muhammad-hamza-iqtedar-2842b8279",
           },
-          "customFields": [],
-          "picture": {
-            "url": "https://i.imgur.com/HgwyOuJ.jpg",
-            "size": 120,
-            "aspectRatio": 1.2,
-            "borderRadius": 4,
-            "effects": {
-              "hidden": false,
-              "border": false,
-              "grayscale": false
-            }
-          }
+          customFields: [],
+          picture: {
+            url: "",
+            size: 0,
+            aspectRatio: 0,
+            borderRadius: 0,
+            effects: {
+              hidden: false,
+              border: false,
+              grayscale: false,
+            },
+          },
         },
-        "sections": {
-          "summary": {
-            "name": "Summary",
-            "columns": 1,
-            "visible": true,
-            "id": "summary",
-            "content": "<p>Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites and applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web standards and cutting-edge development techniques. Proven track record of leading successful projects from concept to deployment.</p>"
+        sections: {
+          summary: {
+            name: "Summary",
+            columns: 1,
+            visible: true,
+            id: "summary",
+            content:
+              "<p>Passionate and results-driven Data Scientist and Junior AI Engineer with a strong foundation in statistical analysis, machine learning, and data visualization. Experienced in leveraging advanced techniques such as LLM fine-tuning, RAG, and vector databases to solve complex problems. Adept at using Python, SQL, Tableau, and Power BI to analyze large datasets and present findings to stakeholders. Committed to continuous learning and applying innovative solutions to drive business decisions.</p>",
           },
-          "awards": {
-            "name": "Awards",
-            "columns": 1,
-            "visible": true,
-            "id": "awards",
-            "items": []
+          awards: {
+            name: "Awards",
+            columns: 1,
+            visible: true,
+            id: "awards",
+            items: [],
           },
-          "certifications": {
-            "name": "Certifications",
-            "columns": 1,
-            "visible": true,
-            "id": "certifications",
-            "items": [
+          certifications: {
+            name: "Certifications",
+            columns: 1,
+            visible: true,
+            id: "certifications",
+            items: [
               {
-                "id": "spdhh9rrqi1gvj0yqnbqunlo",
-                "visible": true,
-                "name": "Full-Stack Web Development",
-                "issuer": "CodeAcademy",
-                "date": "2020",
-                "summary": "",
-                "url": {
-                  "label": "",
-                  "href": ""
-                }
+                id: "1",
+                visible: true,
+                name: "Ai for everyone from Coursera",
+                description: "",
+                summary: "",
+                url: {
+                  label: "",
+                  href: "https://coursera.org/verify/Z8APT86J9FC S",
+                },
               },
               {
-                "id": "n838rddyqv47zexn6cxauwqp",
-                "visible": true,
-                "name": "AWS Certified Developer",
-                "issuer": "Amazon Web Services",
-                "date": "2019",
-                "summary": "",
-                "url": {
-                  "label": "",
-                  "href": ""
-                }
-              }
-            ]
+                id: "2",
+                visible: true,
+                name: "What is Data Science by IBM from Coursera",
+                description: "",
+                summary: "",
+                url: {
+                  label: "",
+                  href: "https://coursera.org/verify/Z8APT86J9FC S",
+                },
+              },
+            ],
           },
-          "education": {
-            "name": "Education",
-            "columns": 1,
-            "visible": true,
-            "id": "education",
-            "items": [
+          education: {
+            name: "Education",
+            columns: 1,
+            visible: true,
+            id: "education",
+            items: [
               {
-                "id": "yo3p200zo45c6cdqc6a2vtt3",
-                "visible": true,
-                "institution": "University of California",
-                "studyType": "Bachelor's in Computer Science",
-                "area": "Berkeley, CA",
-                "score": "",
-                "date": "August 2012 to May 2016",
-                "summary": "",
-                "url": {
-                  "label": "",
-                  "href": ""
-                }
-              }
-            ]
+                id: "3",
+                visible: true,
+                name: "HITEC UNIVERSITY",
+                description: "Bachelor of Computer Science",
+                summary: "Taxila, Pakistan | 07/2020 – 07/2024",
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+            ],
           },
-          "experience": {
-            "name": "Experience",
-            "columns": 1,
-            "visible": true,
-            "id": "experience",
-            "items": [
+          experience: {
+            name: "Experience",
+            columns: 1,
+            visible: true,
+            id: "experience",
+            items: [
               {
-                "id": "lhw25d7gf32wgdfpsktf6e0x",
-                "visible": true,
-                "company": "Creative Solutions Inc.",
-                "position": "Senior Web Developer",
-                "location": "San Francisco, CA",
-                "date": "January 2019 to Present",
-                "summary": "<ul><li><p>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</p></li><li><p>Developed and implemented a new responsive framework, improving cross-device compatibility.</p></li><li><p>Mentored a team of four junior developers, fostering a culture of technical excellence.</p></li></ul>",
-                "url": {
-                  "label": "",
-                  "href": "https://creativesolutions.inc/"
-                }
+                id: "4",
+                visible: true,
+                name: "Junior AI Engineer",
+                description: "MICROMERGER PVT LTD",
+                summary: "08/2024 – Present",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+                items: [
+                  {
+                    id: "5",
+                    visible: true,
+                    name: "Fine-tuned and optimized Large Language Models (LLMs) for specialized industry applications.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                  {
+                    id: "6",
+                    visible: true,
+                    name: "Developed CREWAI agents tailored to client-specific requirements, enhancing customer support automation.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                  {
+                    id: "7",
+                    visible: true,
+                    name: "Worked with vector databases to implement efficient document retrieval and search mechanisms.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                  {
+                    id: "8",
+                    visible: true,
+                    name: "Implemented Retrieval-Augmented Generation (RAG) for generating contextual and accurate AI-driven responses.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                  {
+                    id: "9",
+                    visible: true,
+                    name: "Hands-on experience with LLAMA models, improving model accuracy and scalability for various AI applications.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                ],
               },
               {
-                "id": "r6543lil53ntrxmvel53gbtm",
-                "visible": true,
-                "company": "TechAdvancers",
-                "position": "Web Developer",
-                "location": "San Jose, CA",
-                "date": "June 2016 to December 2018",
-                "summary": "<ul><li><p>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</p></li><li><p>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</p></li><li><p>Optimized application performance, achieving a 30% reduction in load times.</p></li></ul>",
-                "url": {
-                  "label": "",
-                  "href": "https://techadvancers.com/"
-                }
-              }
-            ]
+                id: "10",
+                visible: true,
+                name: "MACHINE LEARNING INTERN",
+                description: "SWITCH COMMUNICATIONS (4 weeks)",
+                summary: "01/08/2023 – 01/09/2023",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+                items: [
+                  {
+                    id: "11",
+                    visible: true,
+                    name: "Applied machine learning techniques to optimize network traffic flow in switch communication systems.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                  {
+                    id: "12",
+                    visible: true,
+                    name: "Utilized libraries TensorFlow, PyTorch for model development and deployment.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                  {
+                    id: "13",
+                    visible: true,
+                    name: "Gained valuable experience in applying machine learning techniques to real-world problems.",
+                    description: "",
+                    summary: "",
+                    url: {
+                      label: "",
+                      href: "",
+                    },
+                  },
+                ],
+              },
+            ],
           },
-          "volunteer": {
-            "name": "Volunteering",
-            "columns": 1,
-            "visible": true,
-            "id": "volunteer",
-            "items": []
+          volunteer: {
+            name: "Volunteering",
+            columns: 1,
+            visible: true,
+            id: "volunteer",
+            items: [],
           },
-          "interests": {
-            "name": "Interests",
-            "columns": 1,
-            "visible": true,
-            "id": "interests",
-            "items": []
-          },
-          "languages": {
-            "name": "Languages",
-            "columns": 1,
-            "visible": true,
-            "id": "languages",
-            "items": []
-          },
-          "profiles": {
-            "name": "Profiles",
-            "columns": 1,
-            "visible": true,
-            "id": "profiles",
-            "items": [
+          skills: {
+            name: "Skills",
+            columns: 1,
+            visible: true,
+            id: "skills",
+            items: [
               {
-                "id": "cnbk5f0aeqvhx69ebk7hktwd",
-                "visible": true,
-                "network": "LinkedIn",
-                "username": "johndoe",
-                "icon": "linkedin",
-                "url": {
-                  "label": "",
-                  "href": "https://linkedin.com/in/johndoe"
-                }
+                id: "hn0keriukh6c0ojktl9gsgjm",
+                visible: true,
+                name: "",
+                description: "",
+                level: 0,
+                keywords: [
+                  "HTML5",
+                  "JavaScript",
+                  "PHP",
+                  "Python, HTML5",
+                  "JavaScript",
+                  "PHP",
+                  "Python",
+                  "HTML5",
+                  "JavaScript",
+                  "Scikit-learn",
+                  "HTML5",
+                  "JavaScript",
+                  "PHP",
+                  "Python, HTML5",
+                  "JavaScript",
+                  "PHP",
+                  "Python",
+                  "HTML5",
+                  "JavaScript",
+                  "PHP",
+                ],
+              },
+            ],
+          },
+          projects: {
+            name: "Projects",
+            columns: 1,
+            visible: true,
+            id: "projects",
+            items: [
+              {
+                id: "14",
+                visible: true,
+                name: "Evaluation of Resumes Using CrewAI Agents",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
               },
               {
-                "id": "ukl0uecvzkgm27mlye0wazlb",
-                "visible": true,
-                "network": "GitHub",
-                "username": "johndoe",
-                "icon": "github",
-                "url": {
-                  "label": "",
-                  "href": "https://github.com/johndoe"
-                }
-              }
-            ]
-          },
-          "projects": {
-            "name": "Projects",
-            "columns": 1,
-            "visible": true,
-            "id": "projects",
-            "items": [
-              {
-                "id": "yw843emozcth8s1ubi1ubvlf",
-                "visible": true,
-                "name": "E-Commerce Platform",
-                "description": "Project Lead",
-                "date": "",
-                "summary": "<p>Led the development of a full-stack e-commerce platform, improving sales conversion by 25%.</p>",
-                "keywords": [],
-                "url": {
-                  "label": "",
-                  "href": ""
-                }
+                id: "15",
+                visible: true,
+                name: "Evaluation of Arabic Resumes Using CrewAI Agents",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
               },
               {
-                "id": "ncxgdjjky54gh59iz2t1xi1v",
-                "visible": true,
-                "name": "Interactive Dashboard",
-                "description": "Frontend Developer",
-                "date": "",
-                "summary": "<p>Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</p>",
-                "keywords": [],
-                "url": {
-                  "label": "",
-                  "href": ""
-                }
-              }
-            ]
-          },
-          "publications": {
-            "name": "Publications",
-            "columns": 1,
-            "visible": true,
-            "id": "publications",
-            "items": []
-          },
-          "references": {
-            "name": "References",
-            "columns": 1,
-            "visible": false,
-            "id": "references",
-            "items": [
-              {
-                "id": "f2sv5z0cce6ztjl87yuk8fak",
-                "visible": true,
-                "name": "Available upon request",
-                "description": "",
-                "summary": "",
-                "url": {
-                  "label": "",
-                  "href": ""
-                }
-              }
-            ]
-          },
-          "skills": {
-            "name": "Skills",
-            "columns": 1,
-            "visible": true,
-            "id": "skills",
-            "items": [
-              {
-                "id": "hn0keriukh6c0ojktl9gsgjm",
-                "visible": true,
-                "name": "Web Technologies",
-                "description": "Advanced",
-                "level": 0,
-                "keywords": ["HTML5", "JavaScript", "PHP", "Python"]
+                id: "16",
+                visible: true,
+                name: "Fine-Tuning a Resume Parsing Model with LLaMA 3.1: 8B",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
               },
               {
-                "id": "r8c3y47vykausqrgmzwg5pur",
-                "visible": true,
-                "name": "Web Frameworks",
-                "description": "Intermediate",
-                "level": 0,
-                "keywords": ["React.js", "Angular", "Vue.js", "Laravel", "Django"]
+                id: "17",
+                visible: true,
+                name: "Job Description Generation Using VLLM",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
               },
               {
-                "id": "b5l75aseexqv17quvqgh73fe",
-                "visible": true,
-                "name": "Tools",
-                "description": "Intermediate",
-                "level": 0,
-                "keywords": ["Webpack", "Git", "Jenkins", "Docker", "JIRA"]
-              }
-            ]
+                id: "18",
+                visible: true,
+                name: "Predictive Analytics on Student Performance",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "19",
+                visible: true,
+                name: "Android Application - 'Trax'",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "20",
+                visible: true,
+                name: "Data Cleaning & Preprocessing for Big Data",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "21",
+                visible: true,
+                name: "Big Data Analytics with Hadoop and Spark",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "22",
+                visible: true,
+                name: "Customer Segmentation Using K-means Clustering",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "23",
+                visible: true,
+                name: "Web Scraping and Data Mining for Market Analysis",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "24",
+                visible: true,
+                name: "Data Mining with Apriori Algorithm",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "25",
+                visible: true,
+                name: "Classification with K-Nearest Neighbors (KNN)",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+              {
+                id: "26",
+                visible: true,
+                name: "Logistic Regression Model for Binary Classification",
+                description: "",
+                summary: "",
+                keywords: [],
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+            ],
           },
-          "custom": {}
+          profiles: {
+            name: "Profiles",
+            columns: 1,
+            visible: true,
+            id: "profiles",
+            items: [],
+          },
+          publications: {
+            name: "Publications",
+            columns: 1,
+            visible: true,
+            id: "publications",
+            items: [],
+          },
+          references: {
+            name: "References",
+            columns: 1,
+            visible: true,
+            id: "references",
+            items: [
+              {
+                id: "f2sv5z0cce6ztjl87yuk8fak",
+                visible: true,
+                name: "Available upon request",
+                description: "",
+                summary: "",
+                url: {
+                  label: "",
+                  href: "",
+                },
+              },
+            ],
+          },
+          interests: {
+            name: "Interests",
+            columns: 1,
+            visible: true,
+            id: "interests",
+            items: [],
+          },
+          languages: {
+            name: "Languages",
+            columns: 1,
+            visible: true,
+            id: "languages",
+            items: [],
+          },
+          custom: {},
         },
-        "metadata": {
-          "template": "azurill",
-          "layout": [
+        metadata: {
+          template: "bronzor",
+          layout: [
             [
-              ["summary", "experience", "education", "references"],
+              ["profiles", "summary", "experience", "education", "references"],
               [
-                "profiles",
                 "skills",
                 "certifications",
                 "projects",
@@ -341,40 +535,40 @@ export const builderLoader: LoaderFunction<ResumeDto> = async ({ params }) => {
                 "languages",
                 "awards",
                 "volunteer",
-                "publications"
-              ]
-            ]
+                "publications",
+              ],
+            ],
           ],
-          "css": {
-            "value": ".section {\n\toutline: 1px solid #000;\n\toutline-offset: 4px;\n}",
-            "visible": false
+          css: {
+            value: ".section {\n\toutline: 1px solid #000;\n\toutline-offset: 4px;\n}",
+            visible: false,
           },
-          "page": {
-            "margin": 14,
-            "format": "a4",
-            "options": {
-              "breakLine": true,
-              "pageNumbers": true
-            }
-          },
-          "theme": {
-            "background": "#ffffff",
-            "text": "#000000",
-            "primary": "#ca8a04"
-          },
-          "typography": {
-            "font": {
-              "family": "Merriweather",
-              "subset": "latin",
-              "variants": ["regular"],
-              "size": 13
+          page: {
+            margin: 14,
+            format: "a4",
+            options: {
+              breakLine: true,
+              pageNumbers: true,
             },
-            "lineHeight": 1.75,
-            "hideIcons": false,
-            "underlineLinks": true
           },
-          "notes": ""
-        }
+          theme: {
+            background: "#ffffff",
+            text: "#000000",
+            primary: "#ca8a04",
+          },
+          typography: {
+            font: {
+              family: "Merriweather",
+              subset: "latin",
+              variants: ["regular"],
+              size: 13,
+            },
+            lineHeight: 1.75,
+            hideIcons: false,
+            underlineLinks: true,
+          },
+          notes: "",
+        },
       },
       visibility: "private",
       locked: false,

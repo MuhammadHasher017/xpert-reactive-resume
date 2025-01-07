@@ -7,27 +7,22 @@ import { languages } from "@reactive-resume/utils";
 import { useEffect } from "react";
 
 import { defaultLocale, dynamicActivate } from "../libs/lingui";
-import { updateUser } from "../services/user";
-import { useAuthStore } from "../stores/auth";
 
 type Props = {
   children: React.ReactNode;
 };
 
 export const LocaleProvider = ({ children }: Props) => {
-  const userLocale = useAuthStore((state) => state.user?.locale);
-
   useEffect(() => {
     const detectedLocale =
-      detect(fromUrl("locale"), fromStorage("locale"), userLocale, defaultLocale) ?? defaultLocale;
-
+      detect(fromUrl("locale"), fromStorage("locale"), defaultLocale) ?? defaultLocale;
     // Activate the locale only if it's supported
     if (languages.some((lang) => lang.locale === detectedLocale)) {
       void dynamicActivate(detectedLocale);
     } else {
       void dynamicActivate(defaultLocale);
     }
-  }, [userLocale]);
+  }, []);
 
   return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 };

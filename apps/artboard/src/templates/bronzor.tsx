@@ -198,6 +198,8 @@ const Section = <T,>({
             const summary = (summaryKey && get(item, summaryKey, "")) as string | undefined;
             const keywords = (keywordsKey && get(item, keywordsKey, [])) as string[] | undefined;
 
+            console.log("tes", children?.(item as T));
+
             return (
               <div key={item.id} className={cn("space-y-2", className)}>
                 <div>
@@ -209,10 +211,14 @@ const Section = <T,>({
                   <div dangerouslySetInnerHTML={{ __html: summary }} className="wysiwyg" />
                 )}
 
-                {level !== undefined && level > 0 && <Rating level={level} />}
+                {/* {level !== undefined && level > 0 && <Rating level={level} />} */}
 
                 {keywords !== undefined && keywords.length > 0 && (
-                  <p className="text-sm">{keywords.join(", ")}</p>
+                  <ul className="grid list-inside list-disc grid-cols-1 gap-2 text-sm sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                    {keywords.map((keyword, index) => (
+                      <li key={index}>{keyword}</li>
+                    ))}
+                  </ul>
                 )}
               </div>
             );
@@ -273,6 +279,7 @@ const Experience = () => {
 
           <div className="shrink-0 text-right">
             <div className="font-bold">{item.date}</div>
+
             <div>{item.location}</div>
           </div>
         </div>

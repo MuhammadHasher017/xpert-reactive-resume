@@ -27,7 +27,7 @@ export const ExportSection = () => {
 
   const onPdfExport = async () => {
     const { resume } = useResumeStore.getState();
-    const { url } = await printResume({ id: resume.id });
+    // const { url } = await printResume({ id: resume.id });
 
     openInNewTab(url);
   };

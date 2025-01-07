@@ -213,7 +213,11 @@ const Section = <T,>({
                 {level !== undefined && level > 0 && <Rating level={level} />}
 
                 {keywords !== undefined && keywords.length > 0 && (
-                  <p className="text-sm">{keywords.join(", ")}</p>
+                  <ul className="list-inside list-disc text-sm">
+                    {keywords.map((keyword, index) => (
+                      <li key={index}>{keyword}</li>
+                    ))}
+                  </ul>
                 )}
               </div>
             );

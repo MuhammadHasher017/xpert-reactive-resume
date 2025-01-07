@@ -20,8 +20,6 @@ import { Fragment, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { Icon } from "@/client/components/icon";
-import { UserAvatar } from "@/client/components/user-avatar";
-import { UserOptions } from "@/client/components/user-options";
 import { useResumeStore } from "@/client/stores/resume";
 
 import { BasicsSection } from "./sections/basics";
@@ -152,12 +150,6 @@ export const LeftSidebar = () => {
             }}
           />
         </div>
-
-        <UserOptions>
-          <Button size="icon" variant="ghost" className="rounded-full">
-            <UserAvatar size={28} />
-          </Button>
-        </UserOptions>
       </div>
 
       <ScrollArea orientation="vertical" className="h-screen flex-1 pb-16 lg:pb-0">

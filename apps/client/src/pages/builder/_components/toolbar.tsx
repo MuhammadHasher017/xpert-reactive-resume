@@ -35,24 +35,24 @@ export const BuilderToolbar = () => {
   const id = useResumeStore((state) => state.resume.id);
   const isPublic = useResumeStore((state) => state.resume.visibility === "public");
   const pageOptions = useResumeStore((state) => state.resume.data.metadata.page.options);
+  const resume = useResumeStore((state) => state.resume);
 
   const { printResume, loading } = usePrintResume();
 
   const onPrint = async () => {
-    const { url } = await printResume({ id });
+    const { url } = await printResume({ resume });
 
     openInNewTab(url);
   };
 
   const onCopy = async () => {
-    const { url } = await printResume({ id });
-    await navigator.clipboard.writeText(url);
-
-    toast({
-      variant: "success",
-      title: t`A link has been copied to your clipboard.`,
-      description: t`Anyone with this link can view and download the resume. Share it on your profile or with recruiters.`,
-    });
+    // const { url } = await printResume({ id });
+    // await navigator.clipboard.writeText(url);
+    // toast({
+    //   variant: "success",
+    //   title: t`A link has been copied to your clipboard.`,
+    //   description: t`Anyone with this link can view and download the resume. Share it on your profile or with recruiters.`,
+    // });
   };
 
   const onZoomIn = () => frameRef?.contentWindow?.postMessage({ type: "ZOOM_IN" }, "*");

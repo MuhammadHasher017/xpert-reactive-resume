@@ -1,14 +1,20 @@
 import { t } from "@lingui/macro";
-import { UrlDto } from "@reactive-resume/dto";
 import { useMutation } from "@tanstack/react-query";
 
 import { toast } from "@/client/hooks/use-toast";
 import { axios } from "@/client/libs/axios";
 
-export const printResume = async (data: { id: string }) => {
-  const response = await axios.get<UrlDto>(`/resume/print/${data.id}`);
+// POST request to generate the resume
+export const printResume = async (data: { resume: object }) => {
+  // Replace URL with your backend endpoint
+  const response = await axios.post<Blob>("http://localhost:3000/generate-resume", data, {
+    responseType: "blob", // Ensure the response is treated as a Blob
+  });
 
-  return response.data;
+  // Create a blob URL from the response
+  const blobUrl = URL.createObjectURL(response.data);
+
+  return blobUrl;
 };
 
 export const usePrintResume = () => {
@@ -19,7 +25,7 @@ export const usePrintResume = () => {
   } = useMutation({
     mutationFn: printResume,
     onError: (error) => {
-      const message = error.message;
+      const message = error.message || "An unexpected error occurred.";
 
       toast({
         variant: "error",
