@@ -1,10 +1,14 @@
 import { t } from "@lingui/macro";
 import { deepSearchAndParseDates, ErrorMessage } from "@reactive-resume/utils";
 import _axios from "axios";
+
 import { toast } from "../hooks/use-toast";
 import { translateError } from "../services/errors/translate-error";
-export const axios = _axios.create({ baseURL: "/api", withCredentials: true });
- 
+export const axios = _axios.create({
+  baseURL: "http://192.168.11.56:8003/api",
+  withCredentials: true,
+});
+
 // Intercept responses to transform ISO dates to JS date objects
 axios.interceptors.response.use(
   (response) => {

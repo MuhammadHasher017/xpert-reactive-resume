@@ -6,6 +6,7 @@ import {
   ClockClockwise,
   CubeFocus,
   FilePdf,
+  FloppyDisk,
   Hash,
   LineSegment,
   LinkSimple,
@@ -17,6 +18,7 @@ import { motion } from "framer-motion";
 
 import { useToast } from "@/client/hooks/use-toast";
 import { usePrintResume } from "@/client/services/resume";
+import { useUpdateCandidate } from "@/client/services/resume/updatecandidate";
 import { useBuilderStore } from "@/client/stores/builder";
 import { useResumeStore, useTemporalResumeStore } from "@/client/stores/resume";
 
@@ -38,9 +40,10 @@ export const BuilderToolbar = () => {
   const resume = useResumeStore((state) => state.resume);
 
   const { printResume, loading } = usePrintResume();
+  const { updateCandidate, loading: isPending } = useUpdateCandidate();
 
   const onPrint = async () => {
-    const { url } = await printResume({ resume });
+    const url = await printResume({ resume });
 
     openInNewTab(url);
   };
@@ -60,6 +63,17 @@ export const BuilderToolbar = () => {
   const onResetView = () => frameRef?.contentWindow?.postMessage({ type: "RESET_VIEW" }, "*");
   const onCenterView = () => frameRef?.contentWindow?.postMessage({ type: "CENTER_VIEW" }, "*");
 
+  const handleSave = async () => {
+    const formData = new FormData();
+    formData.append("custom_builder_parsed_resume", JSON.stringify(resume));
+
+    try {
+      const result = await updateCandidate({ candidateId: "hamza@gmail.com", data: formData });
+      console.log("Candidate updated successfully:", result);
+    } catch (error) {
+      console.error("Failed to update candidate:", error);
+    }
+  };
   return (
     <motion.div className="fixed inset-x-0 bottom-0 mx-auto hidden py-6 text-center md:block">
       <div className="inline-flex items-center justify-center rounded-full bg-background px-4 shadow-xl">
@@ -167,6 +181,14 @@ export const BuilderToolbar = () => {
           </Button>
         </Tooltip>
       </div>
+      <Button
+        size="icon"
+        className="rounded-full"
+        disabled={loading} // Disable the button while loading
+        onClick={handleSave}
+      >
+        <FloppyDisk />
+      </Button>
     </motion.div>
   );
 };

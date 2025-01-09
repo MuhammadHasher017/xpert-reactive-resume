@@ -198,8 +198,6 @@ const Section = <T,>({
             const summary = (summaryKey && get(item, summaryKey, "")) as string | undefined;
             const keywords = (keywordsKey && get(item, keywordsKey, [])) as string[] | undefined;
 
-            console.log("tes", children?.(item as T));
-
             return (
               <div key={item.id} className={cn("space-y-2", className)}>
                 <div>

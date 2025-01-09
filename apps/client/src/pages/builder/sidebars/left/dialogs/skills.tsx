@@ -11,6 +11,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  Input,
 } from "@reactive-resume/ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -39,6 +40,34 @@ export const SkillsDialog = () => {
       pendingKeyword={pendingKeyword}
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <FormField
+          name="name"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Name`}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="description"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Description`}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {/* <FormField
           name="level"
           control={form.control}

@@ -10,7 +10,7 @@ import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { useStoreWithEqualityFn } from "zustand/traditional";
 
-import { debouncedUpdateResume } from "../services/resume";
+// import { debouncedUpdateResume } from "../services/resume";
 
 type ResumeStore = {
   resume: ResumeDto;
@@ -34,8 +34,6 @@ export const useResumeStore = create<ResumeStore>()(
           } else {
             state.resume.data = _set(state.resume.data, path, value);
           }
-
-          void debouncedUpdateResume(JSON.parse(JSON.stringify(state.resume)));
         });
       },
       addSection: () => {
@@ -50,8 +48,6 @@ export const useResumeStore = create<ResumeStore>()(
           const lastPageIndex = state.resume.data.metadata.layout.length - 1;
           state.resume.data.metadata.layout[lastPageIndex][0].push(`custom.${section.id}`);
           state.resume.data = _set(state.resume.data, `sections.custom.${section.id}`, section);
-
-          void debouncedUpdateResume(JSON.parse(JSON.stringify(state.resume)));
         });
       },
       removeSection: (sectionId: SectionKey) => {
@@ -62,8 +58,6 @@ export const useResumeStore = create<ResumeStore>()(
             removeItemInLayout(sectionId, state.resume.data.metadata.layout);
             // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
             delete state.resume.data.sections.custom[id];
-
-            void debouncedUpdateResume(JSON.parse(JSON.stringify(state.resume)));
           });
         }
       },

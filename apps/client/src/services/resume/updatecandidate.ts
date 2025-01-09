@@ -4,26 +4,22 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "@/client/hooks/use-toast";
 import { axios } from "@/client/libs/axios";
 
-// POST request to generate the resume
-export const printResume = async (data: { resume: object }) => {
+// PUT request to update the candidate
+export const updateCandidate = async (candidateId: string, data: Record<string, any>) => {
   // Replace URL with your backend endpoint
-  const response = await axios.post<Blob>("/generate-resume", data, {
-    responseType: "blob", // Ensure the response is treated as a Blob
-  });
+  const response = await axios.put(`/resource/Candidate/${candidateId}`, data);
 
-  // Create a blob URL from the response
-  const blobUrl = URL.createObjectURL(response.data);
-
-  return blobUrl;
+  return response.data; // Return the updated data
 };
 
-export const usePrintResume = () => {
+export const useUpdateCandidate = () => {
   const {
     error,
     isPending: loading,
-    mutateAsync: printResumeFn,
+    mutateAsync: updateCandidateFn,
   } = useMutation({
-    mutationFn: printResume,
+    mutationFn: ({ candidateId, data }: { candidateId: string; data: Record<string, any> }) =>
+      updateCandidate(candidateId, data),
     onError: (error) => {
       const message = error.message || "An unexpected error occurred.";
 
@@ -35,5 +31,5 @@ export const usePrintResume = () => {
     },
   });
 
-  return { printResume: printResumeFn, loading, error };
+  return { updateCandidate: updateCandidateFn, loading, error };
 };

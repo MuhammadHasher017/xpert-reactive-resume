@@ -2,7 +2,6 @@ import { t } from "@lingui/macro";
 import { HouseSimple, Lock, SidebarSimple } from "@phosphor-icons/react";
 import { Button, Tooltip } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
-import { Link } from "react-router-dom";
 
 import { useBuilderStore } from "@/client/stores/builder";
 import { useResumeStore } from "@/client/stores/resume";
@@ -43,11 +42,7 @@ export const BuilderHeader = () => {
         </Button>
 
         <div className="flex items-center justify-center gap-x-1 lg:mx-auto">
-          <Button asChild size="icon" variant="ghost">
-            <Link to="/dashboard/resumes">
-              <HouseSimple />
-            </Link>
-          </Button>
+          <HouseSimple />
 
           <span className="mr-2 text-xs opacity-40">{"/"}</span>
 

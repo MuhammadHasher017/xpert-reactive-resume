@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { Copyright } from "@/client/components/copyright";
 import { ThemeSwitch } from "@/client/components/theme-switch";
 
-import { ExportSection } from "./sections/export";
 import { LayoutSection } from "./sections/layout";
 import { PageSection } from "./sections/page";
 import { TemplateSection } from "./sections/template";
@@ -34,8 +33,6 @@ export const RightSidebar = () => {
           <ThemeSection />
           <Separator />
           <PageSection />
-          <Separator />
-          <ExportSection />
           <Separator />
           <Copyright className="text-center" />
         </div>
