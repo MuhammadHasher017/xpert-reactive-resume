@@ -5,7 +5,7 @@ import _axios from "axios";
 import { toast } from "../hooks/use-toast";
 import { translateError } from "../services/errors/translate-error";
 export const axios = _axios.create({
-  baseURL: "http://192.168.11.56:8003/api",
+  baseURL: "http://192.168.11.137:8003/api",
   withCredentials: true,
 });
 
