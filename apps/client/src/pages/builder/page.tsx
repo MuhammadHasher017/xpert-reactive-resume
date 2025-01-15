@@ -1,5 +1,6 @@
+import Cookies from "js-cookie";
 import { useCallback, useEffect } from "react";
-import { LoaderFunction, redirect } from "react-router-dom";
+import { LoaderFunction } from "react-router-dom";
 
 import { findBuilderDataById } from "@/client/services/resume/getbuilderdata";
 import { useBuilderStore } from "@/client/stores/builder";
@@ -46,30 +47,14 @@ export const BuilderPage = () => {
 };
 
 export const builderLoader: LoaderFunction<unknown> = async ({ params }) => {
-  const oldHashToken = localStorage.getItem("hashToken") ?? "";
-
   try {
-    // Get the ID from route params
-
-    let hashToken = window.location.hash.slice(1); // Remove '#' from the hash
-
-    if (!hashToken) {
-      // Store the hash token in local storage for future use
-      hashToken = localStorage.getItem("hashToken") ?? "";
-
-      if (!hashToken) {
-        console.error("No hash token found in URL or local storage.");
-        return redirect("/"); // Redirect if no token is available
-      }
-    }
-
-    history.replaceState(null, document.title, window.location.pathname + window.location.search);
-
-    const builderData = await findBuilderDataById({ applicantId: hashToken });
-    localStorage.setItem("hashToken", hashToken);
+    const user_id = Cookies.get("user_id") || "";
+    const doctype = "Candidate";
+    console.log("user_id", user_id);
+    const builderData = await findBuilderDataById({ name: user_id, doctype });
     // Normalize the API data
     const normalizedResume = normalizeResumeData(
-      JSON.parse(builderData.message.custom_builder_parsed_resume),
+      JSON.parse(builderData.docs[0].custom_builder_parsed_resume),
     );
     // Set the normalized data in the store
     useResumeStore.setState({ resume: normalizedResume });
@@ -77,8 +62,6 @@ export const builderLoader: LoaderFunction<unknown> = async ({ params }) => {
 
     return normalizedResume;
   } catch (error) {
-    console.log("oldHashToken", oldHashToken);
     console.error("Failed to load resume:", error);
-    return redirect(`/`); // Redirect if no token is available
   }
 };

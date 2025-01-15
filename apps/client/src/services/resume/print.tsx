@@ -7,9 +7,13 @@ import { axios } from "@/client/libs/axios";
 // POST request to generate the resume
 export const printResume = async (data: { resume: object }) => {
   // Replace URL with your backend endpoint
-  const response = await axios.post<Blob>("/generate-resume", data, {
-    responseType: "blob", // Ensure the response is treated as a Blob
-  });
+  const response = await axios.post<Blob>(
+    "http://192.168.11.140:8000/api/v1/generate-resume/",
+    data,
+    {
+      responseType: "blob", // Ensure the response is treated as a Blob
+    },
+  );
 
   // Create a blob URL from the response
   const blobUrl = URL.createObjectURL(response.data);
