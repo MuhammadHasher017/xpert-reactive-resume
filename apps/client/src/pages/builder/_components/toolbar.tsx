@@ -15,6 +15,7 @@ import {
 } from "@phosphor-icons/react";
 import { Button, Separator, Toggle, Tooltip } from "@reactive-resume/ui";
 import { motion } from "framer-motion";
+import Cookies from "js-cookie";
 
 import { useToast } from "@/client/hooks/use-toast";
 import { usePrintResume } from "@/client/services/resume";
@@ -66,12 +67,12 @@ export const BuilderToolbar = () => {
   const handleSave = async () => {
     const formData = new FormData();
     formData.append("custom_builder_parsed_resume", JSON.stringify(resume));
+    const user_id = Cookies.get("user_id") || "";
 
     try {
-      const result = await updateCandidate({ candidateId: "hamza@gmail.com", data: formData });
-      console.log("Candidate updated successfully:", result);
+      const result = await updateCandidate({ candidateId: user_id, data: formData });
     } catch (error) {
-      console.error("Failed to update candidate:", error);
+      console.error(`Failed to update candidate: ${error}`);
     }
   };
   return (

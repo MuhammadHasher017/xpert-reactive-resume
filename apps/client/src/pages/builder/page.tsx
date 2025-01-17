@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { useCallback, useEffect } from "react";
-import { LoaderFunction } from "react-router-dom";
+import { LoaderFunction, redirect } from "react-router-dom";
 
 import { findBuilderDataById } from "@/client/services/resume/getbuilderdata";
 import { useBuilderStore } from "@/client/stores/builder";
@@ -62,6 +62,8 @@ export const builderLoader: LoaderFunction<unknown> = async ({ params }) => {
 
     return normalizedResume;
   } catch (error) {
+    return redirect("/not-found");
+
     console.error("Failed to load resume:", error);
   }
 };

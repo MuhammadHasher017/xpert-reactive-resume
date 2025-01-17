@@ -37,6 +37,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
           name: "Certifications",
           columns: 2,
           visible: true,
+          separateLinks: false,
+
           items: [
             {
               id: "",
@@ -52,6 +54,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
         education: {
           id: "education",
           name: "Education",
+          separateLinks: false,
+
           columns: 1,
           visible: true,
           items: [
@@ -72,6 +76,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
           id: "experience",
           name: "Experience",
           columns: 1,
+          separateLinks: false,
+
           visible: true,
           items: [
             {
@@ -96,6 +102,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
               id: "",
               visible: true,
               company: "",
+              separateLinks: false,
+
               position: "",
               location: "",
               date: "",
@@ -109,13 +117,15 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
           id: "languages",
           name: "Languages",
           columns: 2,
+          separateLinks: false,
           visible: true,
-          items: [{ id: "", visible: true, name: "", description: "", level: 0 }],
+          items: [],
         },
         profiles: {
           id: "profiles",
           name: "Profiles",
           columns: 3,
+          separateLinks: false,
           visible: true,
           items: [
             {
@@ -133,6 +143,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
           name: "Projects",
           columns: 2,
           visible: true,
+          separateLinks: false,
+
           items: [
             {
               id: "",
@@ -150,6 +162,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
           id: "publications",
           name: "Publications",
           columns: 1,
+          separateLinks: false,
+
           visible: true,
           items: [],
         },
@@ -158,6 +172,8 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
           name: "References",
           columns: 1,
           visible: true,
+          separateLinks: false,
+
           items: [
             {
               id: "",
@@ -172,6 +188,7 @@ export function normalizeResumeData(apiData: Partial<ResumeDto>): ResumeDto {
         skills: {
           id: "skills",
           name: "Skills",
+          separateLinks: false,
           columns: 3,
           visible: true,
           items: [{ id: "", visible: true, name: "", description: "", level: 0, keywords: [] }],
